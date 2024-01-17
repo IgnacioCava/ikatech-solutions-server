@@ -1,39 +1,46 @@
 {
-  "name": "ikatech-solutions-server",
-  "version": "1.0.0",
-  "description": "server for the Ikatech Solutions admission test",
-  "main": "index.js",
-  "author": "Ignacio Cava",
-  "license": "MIT",
-  "type": "module",
-  "scripts": {
-    "compile": "tsc",
-    "start": "pnpm run compile && node ./dist/index.js",
-    "husky-setup": "husky install && npx husky add .husky/pre-commit 'npx --no-install lint-staged' && npx husky add .husky/commit-msg 'npx --no-install commitlint --edit $1'"
-  },
-  "lint-staged": {
-    "src/**/*.ts": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
-  "dependencies": {
-    "@apollo/server": "^4.10.0",
-    "graphql": "^16.8.1"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^18.4.4",
-    "@commitlint/config-conventional": "^18.4.4",
-    "@types/node": "^20.11.5",
-    "@typescript-eslint/eslint-plugin": "^6.19.0",
-    "@typescript-eslint/parser": "^6.19.0",
-    "eslint": "^8.56.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.2.4",
-    "prettier-plugin-organize-imports": "^3.2.4",
-    "typescript": "^5.3.3"
-  }
+	"name": "ikatech-solutions-server",
+	"version": "1.0.0",
+	"description": "server for the Ikatech Solutions admission test",
+	"main": "index.js",
+	"author": "Ignacio Cava",
+	"license": "MIT",
+	"type": "module",
+	"scripts": {
+		"compile": "tsc",
+		"start": "pnpm compile && node --experimental-specifier-resolution=node ./dist/index.js",
+		"delete-husky": "node -e \"const fs = require('fs'); const { execSync } = require('child_process'); if (fs.existsSync('.husky')) { console.log('.husky file exists, deleting...'); execSync('rimraf .husky'); console.log('.husky file deleted'); } else { console.log('.husky file does not exist'); }\"",
+		"husky-setup": "husky install && npx husky add .husky/pre-commit \"npx lint-staged\" && npx husky add .husky/commit-msg \"npx commitlint --edit ${1}\"",
+		"check-husky": "node -e \"const { execSync } = require('child_process'); try { execSync('husky --version', { stdio: 'ignore' }); console.log('husky is available'); execSync('pnpm run delete-husky && pnpm run husky-setup', { stdio: 'inherit' }); } catch (error) { console.log('husky is not available'); }\""
+	},
+	"lint-staged": {
+		"src/**/*.ts": [
+			"eslint --fix",
+			"prettier --write",
+			"git add"
+		]
+	},
+	"dependencies": {
+		"@apollo/server": "^4.10.0",
+		"graphql": "^16.8.1",
+		"rimraf": "^5.0.5",
+		"ts-node": "^10.9.2"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^18.4.4",
+		"@commitlint/config-conventional": "^18.4.4",
+		"@types/lodash.merge": "^4.6.9",
+		"@types/node": "^20.11.5",
+		"@typescript-eslint/eslint-plugin": "^6.19.0",
+		"@typescript-eslint/parser": "^6.19.0",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.1.3",
+		"husky": "^8.0.3",
+		"lint-staged": "^15.2.0",
+		"lodash.merge": "^4.6.2",
+		"prettier": "^3.2.4",
+		"prettier-plugin-organize-imports": "^3.2.4",
+		"typescript": "^5.3.3"
+	}
 }
