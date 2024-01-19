@@ -1,4 +1,4 @@
-import products from '../../../db/zapato'
+import products from '../../../db/zapato.js'
 
 const resolvers = {
 	Query: {

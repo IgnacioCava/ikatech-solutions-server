@@ -1,0 +1,21 @@
+export default [
+	'https://i.postimg.cc/rpGZ8jPv/1.jpg',
+	'https://i.postimg.cc/tC1r1pcd/2.jpg',
+	'https://i.postimg.cc/k41c4pFh/3.jpg',
+	'https://i.postimg.cc/nzHRM78M/4.jpg',
+	'https://i.postimg.cc/yxxLyH8H/5.jpg',
+	'https://i.postimg.cc/MTdsBTx5/6.jpg',
+	'https://i.postimg.cc/1zSMY63M/7.jpg',
+	'https://i.postimg.cc/rmFjqkWr/8.jpg',
+	'https://i.postimg.cc/br536BZ2/9.jpg',
+	'https://i.postimg.cc/dVr4BnwL/10.jpg',
+	'https://i.postimg.cc/7h5NTnKP/11.jpg',
+	'https://i.postimg.cc/90sYPwkd/13.jpg',
+	'https://i.postimg.cc/CLWck9y3/14.jpg',
+	'https://i.postimg.cc/XvgxMJZW/15.jpg',
+	'https://i.postimg.cc/g2FKnR8d/16.jpg',
+	'https://i.postimg.cc/KvgNGQKJ/17.jpg',
+	'https://i.postimg.cc/N0Q7xcdz/18.jpg',
+	'https://i.postimg.cc/NMM6Wxq8/19.jpg',
+	'https://i.postimg.cc/pVSCM3dm/20.jpg'
+]

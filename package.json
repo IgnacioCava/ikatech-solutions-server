@@ -8,7 +8,7 @@
 	"type": "module",
 	"scripts": {
 		"compile": "tsc",
-		"start": "pnpm compile && node --experimental-specifier-resolution=node ./dist/index.js",
+		"start": "pnpm compile && node ./dist/index.js",
 		"delete-husky": "node -e \"const fs = require('fs'); const { execSync } = require('child_process'); if (fs.existsSync('.husky')) { console.log('.husky file exists, deleting...'); execSync('rimraf .husky'); console.log('.husky file deleted'); } else { console.log('.husky file does not exist'); }\"",
 		"husky-setup": "husky install && npx husky add .husky/pre-commit \"npx lint-staged\" && npx husky add .husky/commit-msg \"npx commitlint --edit ${1}\"",
 		"check-husky": "node -e \"const { execSync } = require('child_process'); try { execSync('husky --version', { stdio: 'ignore' }); console.log('husky is available'); execSync('pnpm run delete-husky && pnpm run husky-setup', { stdio: 'inherit' }); } catch (error) { console.log('husky is not available'); }\""

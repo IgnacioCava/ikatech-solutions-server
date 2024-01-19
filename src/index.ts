@@ -2,7 +2,7 @@
 // npm install @apollo/server graphql
 import { ApolloServer } from '@apollo/server'
 import { startStandaloneServer } from '@apollo/server/standalone'
-import { typeDefs, resolvers } from './schema'
+import { typeDefs, resolvers } from './schema/index.js'
 
 interface MyContext {
 	token?: string
