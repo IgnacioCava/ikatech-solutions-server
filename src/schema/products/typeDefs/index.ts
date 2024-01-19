@@ -1,5 +1,5 @@
-import model from './model'
-import queries from './queries'
+import model from './model.js'
+import queries from './queries.js'
 
 const productTypeDefs = [queries, model]
 

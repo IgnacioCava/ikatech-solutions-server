@@ -1,4 +1,4 @@
-import { ProductResolvers, ProductTypeDefs } from './products'
+import { ProductResolvers, ProductTypeDefs } from './products/index.js'
 import merge from 'lodash.merge'
 
 /* 

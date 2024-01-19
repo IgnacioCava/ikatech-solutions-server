@@ -1,4 +1,4 @@
-import ProductResolvers from './resolvers'
-import ProductTypeDefs from './typeDefs'
+import ProductResolvers from './resolvers/index.js'
+import ProductTypeDefs from './typeDefs/index.js'
 
 export { ProductResolvers, ProductTypeDefs }

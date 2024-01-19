@@ -4,6 +4,7 @@ const model = `#graphql
         precio: Int!
         referencia: String!
         foto: String!
+        slides: [String!]!
     }
 `
 
