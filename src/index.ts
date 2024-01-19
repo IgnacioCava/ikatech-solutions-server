@@ -25,8 +25,7 @@ const server = new ApolloServer({
 await server.start()
 
 const corsOptions: cors.CorsOptions = {
-	origin: [process.env.CLIENT_ORIGIN, 'https://studio.apollographql.com'],
-	credentials: true
+	origin: '*'
 }
 
 app.use('/', cors<cors.CorsRequest>(corsOptions), express.json(), expressMiddleware(server))
