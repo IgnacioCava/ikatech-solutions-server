@@ -1,19 +1,31 @@
-// The ApolloServer constructor requires two parameters: your schema
-// npm install @apollo/server graphql
+// npm install @apollo/server express graphql cors
 import { ApolloServer } from '@apollo/server'
-import { typeDefs, resolvers } from './schema/index.js'
-import { startStandaloneServer } from '@apollo/server/standalone'
-import * as dotenv from 'dotenv'
+import { expressMiddleware } from '@apollo/server/express4'
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
+import express from 'express'
+import http from 'http'
+import cors from 'cors'
+import { typeDefs, resolvers } from './schema'
 
-dotenv.config()
+interface MyContext {
+	token?: string
+}
 
-const server = new ApolloServer({
+const app = express()
+const httpServer = http.createServer(app)
+const server = new ApolloServer<MyContext>({
 	typeDefs,
-	resolvers
+	resolvers,
+	plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
 })
+await server.start()
+app.use(
+	'/graphql',
+	cors<cors.CorsRequest>(),
+	express.json(),
+	expressMiddleware(server, {
+		context: async ({ req }) => ({ token: req.headers.token })
+	})
+)
 
-const { url } = await startStandaloneServer(server, {
-	listen: { port: 4000 }
-})
-
-console.log(`🚀  Server ready at: ${url}`)
+await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve))
