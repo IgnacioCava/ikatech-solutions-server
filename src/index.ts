@@ -4,8 +4,8 @@ import { expressMiddleware } from '@apollo/server/express4'
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
 import express from 'express'
 import http from 'http'
-import cors from 'cors'
-import { typeDefs, resolvers } from './schema'
+import cors, { CorsOptions } from 'cors'
+import { typeDefs, resolvers } from './schema/index.js'
 
 interface MyContext {
 	token?: string
@@ -19,6 +19,7 @@ const server = new ApolloServer<MyContext>({
 	plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
 })
 await server.start()
+
 app.use(
 	'/graphql',
 	cors<cors.CorsRequest>(),
@@ -40,3 +41,4 @@ app.use((req, res, next) => {
 })
 
 await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve))
+console.log('ready')
