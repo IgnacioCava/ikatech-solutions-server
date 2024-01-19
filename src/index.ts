@@ -25,7 +25,9 @@ const server = new ApolloServer({
 await server.start()
 
 const corsOptions: cors.CorsOptions = {
-	origin: '*'
+	origin: '*',
+	methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+	allowedHeaders: 'Content-Type,Authorization'
 }
 
 app.use(cors<cors.CorsRequest>(corsOptions), express.json(), expressMiddleware(server))
